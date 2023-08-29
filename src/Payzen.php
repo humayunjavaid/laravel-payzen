@@ -100,10 +100,10 @@ class Payzen
 
 
     public function __construct(
-        string $clientId,
-        string $clientSecretKey,
-        string $authUrl,
-        string $psidUrl
+        string $clientId = '',
+        string $clientSecretKey = '',
+        string $authUrl = '',
+        string $psidUrl = ''
     ) {
 
         $this->clientId = $clientId;
@@ -157,13 +157,13 @@ class Payzen
      */
     public function generateToken(): string
     {
-        $response = Http::post($this->authUrl, [
-            'clientId' => $this->clientId,
-            'clientSecretKey' => $this->clientSecretKey
+        $response = Http::withHeaders([
+            'Content-type: application/vnd.api+json',
+            'Accept: application/vnd.api+json',
         ])
-            ->withHeaders([
-                'Content-type: application/vnd.api+json',
-                'Accept: application/vnd.api+json',
+            ->post($this->authUrl, [
+                'clientId' => $this->clientId,
+                'clientSecretKey' => $this->clientSecretKey
             ]);
 
         if (!$response->successful()) {
@@ -172,7 +172,7 @@ class Payzen
 
         $data = $response->json();
 
-        $this->token = data_get($data, 'content.0.token.token', null);
+        $this->token = data_get($data, 'content.0.token.token', '');
 
         if (!$this->token) {
             throw new Exception("Token not received in the response");

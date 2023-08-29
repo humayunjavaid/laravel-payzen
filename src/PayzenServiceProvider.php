@@ -8,15 +8,14 @@ use Spatie\LaravelPackageTools\PackageServiceProvider;
 
 class PayzenServiceProvider extends PackageServiceProvider
 {
+
+
     public function configurePackage(Package $package): void
     {
         $package
             ->name('laravel-payzen')
             ->hasConfigFile();
-    }
 
-    public function register()
-    {
         $this->app->bind('payzen', function () {
 
             $clientId = config('payzen.clientId');
@@ -30,6 +29,7 @@ class PayzenServiceProvider extends PackageServiceProvider
             return new Payzen($clientId, $clientSecretKey, $authUrl, $psidUrl);
 
         });
-
     }
+
+
 }
