@@ -2,9 +2,9 @@
 
 namespace Humayunjavaid\Payzen\Tests;
 
+use Humayunjavaid\Payzen\PayzenServiceProvider;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Orchestra\Testbench\TestCase as Orchestra;
-use Humayunjavaid\Payzen\PayzenServiceProvider;
 
 class TestCase extends Orchestra
 {
