@@ -2,7 +2,6 @@
 
 namespace Humayunjavaid\Payzen;
 
-use Humayunjavaid\Payzen\Commands\PayzenCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 
