@@ -1,12 +1,12 @@
 <?php
 
-namespace VendorName\Skeleton\Commands;
+namespace Humayunjavaid\Payzen\Commands;
 
 use Illuminate\Console\Command;
 
-class SkeletonCommand extends Command
+class PayzenCommand extends Command
 {
-    public $signature = 'skeleton';
+    public $signature = 'laravel-payzen';
 
     public $description = 'My command';
 
