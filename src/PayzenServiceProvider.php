@@ -7,8 +7,6 @@ use Spatie\LaravelPackageTools\PackageServiceProvider;
 
 class PayzenServiceProvider extends PackageServiceProvider
 {
-
-
     public function configurePackage(Package $package): void
     {
         $package
@@ -29,6 +27,4 @@ class PayzenServiceProvider extends PackageServiceProvider
 
         });
     }
-
-
 }
