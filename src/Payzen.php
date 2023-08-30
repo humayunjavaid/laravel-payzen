@@ -154,7 +154,7 @@ class Payzen
         ])
             ->post($this->authUrl, [
                 'clientId' => $this->clientId,
-                'clientSecretKey' => $this->clientSecretKey
+                'clientSecretKey' => $this->clientSecretKey,
             ]);
 
         if (!$response->successful()) {

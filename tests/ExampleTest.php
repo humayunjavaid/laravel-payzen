@@ -4,7 +4,6 @@ use Humayunjavaid\Payzen\Payzen;
 use Illuminate\Http\Client\Response;
 use Illuminate\Support\Facades\Http;
 
-
 it('generates a token', function () {
 
     Http::fake([
@@ -12,10 +11,10 @@ it('generates a token', function () {
             'content' => [
                 0 => [
                     'token' => [
-                        'token' => 'generated-token'
-                    ]
-                ]
-            ]
+                        'token' => 'generated-token',
+                    ],
+                ],
+            ],
         ], 200),
     ]);
 
@@ -23,7 +22,6 @@ it('generates a token', function () {
 
     expect($token)->toBe('generated-token');
 });
-
 
 it('can generate token and psid response with required details', function () {
 
@@ -41,7 +39,6 @@ it('can generate token and psid response with required details', function () {
 
     $token = app(Payzen::class)->generateToken();
 
-
     Http::fake([
         'api/generatePsid/*' => Http::response([
             'content' => [
@@ -49,9 +46,9 @@ it('can generate token and psid response with required details', function () {
                     'consumerNumber' => 'consumer-number',
                     'consumerKey' => 'consumer-key',
                     'challanAmount' => 'challan-amount',
-                    'service_charges' => 'service-charges'
-                ]
-            ]
+                    'service_charges' => 'service-charges',
+                ],
+            ],
         ], 200),
     ]);
 
