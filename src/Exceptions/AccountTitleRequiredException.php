@@ -7,7 +7,6 @@ use Throwable;
 
 class AccountTitleRequiredException extends Exception
 {
-
     public function __construct(
         $message = 'Account title is required.',
         $code = 0,

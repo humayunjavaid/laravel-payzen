@@ -15,5 +15,4 @@ class PayzenValidator implements Validator
             throw new ConsumerNameRequiredException;
         }
     }
-
 }

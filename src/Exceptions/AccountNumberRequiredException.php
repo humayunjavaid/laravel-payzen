@@ -1,12 +1,12 @@
 <?php
 
 namespace Humayunjavaid\Payzen\Exceptions;
+
 use Exception;
 use Throwable;
 
 class AccountNumberRequiredException extends Exception
 {
-
     public function __construct(
         $message = 'Account number is required.',
         $code = 0,
@@ -14,5 +14,4 @@ class AccountNumberRequiredException extends Exception
     ) {
         parent::__construct($message, $code, $previous);
     }
-
 }

@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace Humayunjavaid\Payzen;
 
 use Exception;
+use Humayunjavaid\Payzen\Validators\ValidatorFactory;
+use Illuminate\Http\Client\PendingRequest;
 use Illuminate\Http\Client\Response;
 use Illuminate\Support\Facades\Http;
-use Illuminate\Http\Client\PendingRequest;
-use Humayunjavaid\Payzen\Validators\ValidatorFactory;
 
 /**
  *  Payzen
@@ -50,13 +50,10 @@ class Payzen
      */
     protected string $email;
 
-
     /**
      * Consumer Name
-     * @var string
      */
     protected string $consumerName;
-
 
     /**
      * mobileNumber
@@ -132,7 +129,6 @@ class Payzen
 
     }
 
-
     public function payload(): array
     {
         return [
@@ -148,8 +144,8 @@ class Payzen
             'amountBifurcation' => [
                 'accountHeadName' => $this->accountTitle,
                 'accountNumber' => $this->accountNumber,
-                'amountToTransfer' => $this->amount
-            ]
+                'amountToTransfer' => $this->amount,
+            ],
         ];
     }
 
@@ -168,7 +164,7 @@ class Payzen
                 'clientSecretKey' => $this->clientSecretKey,
             ]);
 
-        if (!$response->successful()) {
+        if (! $response->successful()) {
             throw new Exception('Failed to generate token');
         }
 
@@ -176,7 +172,7 @@ class Payzen
 
         $this->token = data_get($data, 'content.0.token.token', '');
 
-        if (!$this->token) {
+        if (! $this->token) {
             throw new Exception('Token not received in the response');
         }
 
@@ -268,23 +264,13 @@ class Payzen
         return $this;
     }
 
-
-    /**
-     *
-     * @param string $consumerName
-     * @return self
-     */
     public function setConsumerName(string $consumerName): self
     {
         $this->consumerName = $consumerName;
+
         return $this;
     }
 
-    /**
-     *
-     * @param string $cnic
-     * @return self
-     */
     public function setCnic(string $cnic): self
     {
         $this->cnic = $cnic;

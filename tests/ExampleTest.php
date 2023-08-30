@@ -60,4 +60,3 @@ it('can generate token and psid response with required details', function () {
     expect($token)->toBe('generated-token');
     expect($response)->toBeInstanceOf(Response::class);
 });
-
