@@ -30,10 +30,10 @@ it('can generate token and psid response with required details', function () {
             'content' => [
                 0 => [
                     'token' => [
-                        'token' => 'generated-token'
-                    ]
-                ]
-            ]
+                        'token' => 'generated-token',
+                    ],
+                ],
+            ],
         ], 200),
     ]);
 
@@ -68,4 +68,3 @@ it('can generate token and psid response with required details', function () {
     expect($token)->toBe('generated-token');
     expect($response)->toBeInstanceOf(Response::class);
 });
-

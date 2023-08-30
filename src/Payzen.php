@@ -44,21 +44,15 @@ class Payzen
      */
     protected string $cnic;
 
-
     /**
      * Email
-     * @var string
      */
     protected string $email;
 
-
-
     /**
      * mobileNumber
-     * @var string
      */
     protected string $mobileNumber;
-
 
     /**
      * Account Number
@@ -94,9 +88,6 @@ class Payzen
      * Service ID
      */
     protected string $serviceId;
-
-
-
 
     public function __construct(
         string $clientId = '',
@@ -137,7 +128,7 @@ class Payzen
             'expiryDate' => $this->expiryDate ?? '',
             'amountWithinDueDate' => $this->amount,
             'amountAfterDueData' => $this->amount ?? '',
-            'amountBifurcation' => []
+            'amountBifurcation' => [],
         ]);
 
     }
@@ -157,7 +148,7 @@ class Payzen
                 'clientSecretKey' => $this->clientSecretKey,
             ]);
 
-        if (!$response->successful()) {
+        if (! $response->successful()) {
             throw new Exception('Failed to generate token');
         }
 
@@ -165,7 +156,7 @@ class Payzen
 
         $this->token = data_get($data, 'content.0.token.token', '');
 
-        if (!$this->token) {
+        if (! $this->token) {
             throw new Exception('Token not received in the response');
         }
 
@@ -186,11 +177,8 @@ class Payzen
         return $request;
     }
 
-
     /**
      * Account Number of merchant
-     * @param string $accountNumber
-     * @return self
      */
     public function setAccountNumber(string $accountNumber): self
     {
@@ -201,8 +189,6 @@ class Payzen
 
     /**
      * Account title of merchant
-     * @param string $accountTitle
-     * @return self
      */
     public function setAccountTitle(string $accountTitle): self
     {
@@ -213,8 +199,6 @@ class Payzen
 
     /**
      * Amount to be set
-     * @param string $amount
-     * @return self
      */
     public function setAmount(string $amount): self
     {
@@ -225,8 +209,6 @@ class Payzen
 
     /**
      * Due date of payable amount
-     * @param string $dueDate
-     * @return self
      */
     public function setDueDate(string $dueDate): self
     {
@@ -237,8 +219,6 @@ class Payzen
 
     /**
      * Expiry Date of payable amount
-     * @param string $expiryDate
-     * @return self
      */
     public function setExpiryDate(string $expiryDate): self
     {
@@ -249,8 +229,6 @@ class Payzen
 
     /**
      * Client generated challanNumber required for payment intimation
-     * @param string $challanNumber
-     * @return self
      */
     public function setChallanNumber(string $challanNumber): self
     {
@@ -261,8 +239,6 @@ class Payzen
 
     /**
      * Service ID provided by Payzen
-     * @param string $serviceId
-     * @return self
      */
     public function setServiceId(string $serviceId): self
     {
@@ -271,34 +247,24 @@ class Payzen
         return $this;
     }
 
-    /**
-     *
-     * @param string $cnic
-     * @return self
-     */
     public function setCnic(string $cnic): self
     {
         $this->cnic = $cnic;
+
         return $this;
     }
 
-    /**
-     * @param string $email
-     * @return self
-     */
     public function setEmail(string $email): self
     {
         $this->email = $email;
+
         return $this;
     }
 
-    /**
-     * @param string $mobileNumber
-     * @return self
-     */
     public function setMobileNumber(string $mobileNumber): self
     {
         $this->mobileNumber = $mobileNumber;
+
         return $this;
     }
 }
