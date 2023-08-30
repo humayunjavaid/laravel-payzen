@@ -1,6 +1,7 @@
 <?php
 
 use Humayunjavaid\Payzen\Payzen;
+use Illuminate\Http\Client\Response;
 use Illuminate\Support\Facades\Http;
 
 
@@ -24,12 +25,25 @@ it('generates a token', function () {
 });
 
 
-
-
-it('can generate psid response with required details', function () {
+it('can generate token and psid response with required details', function () {
 
     Http::fake([
         '*' => Http::response([
+            'content' => [
+                0 => [
+                    'token' => [
+                        'token' => 'generated-token'
+                    ]
+                ]
+            ]
+        ], 200),
+    ]);
+
+    $token = app(Payzen::class)->generateToken();
+
+
+    Http::fake([
+        'api/generatePsid/*' => Http::response([
             'content' => [
                 0 => [
                     'consumerNumber' => 'consumer-number',
@@ -41,17 +55,20 @@ it('can generate psid response with required details', function () {
         ], 200),
     ]);
 
-    $token = app(Payzen::class)->generateToken();
+    $response = app(Payzen::class)
+        ->setCnic('23232323')
+        ->setEmail('sdsd@ad.com')
+        ->setMobileNumber('232323')
+        ->setChallanNumber('2323232323')
+        ->setServiceId(12)
+        ->setAccountNumber('23223232')
+        ->setAccountTitle('Wasa')
+        ->setDueDate('2023-08-29')
+        ->setExpiryDate('2023-08-29')
+        ->setAmount(500)
+        ->generate();
 
-    $response = app(Payzen::class)->generate();
-
-    // Assertions
-    // Http::assertSent(function ($request) use ($clientId, $clientSecretKey , $authUrl) {
-    //     return $request->url() === $authUrl
-    //         && $request['clientId'] === $clientId
-    //         && $request['clientSecretKey'] === $clientSecretKey;
-    // });
-
-    expect($response)->toBeInstanceOf(Response::class);
+    expect($token)->toBe('generated-token');
     expect($response)->toBeInstanceOf(Response::class);
 });
+
