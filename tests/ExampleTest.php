@@ -30,10 +30,10 @@ it('can generate token and psid response with required details', function () {
             'content' => [
                 0 => [
                     'token' => [
-                        'token' => 'generated-token'
-                    ]
-                ]
-            ]
+                        'token' => 'generated-token',
+                    ],
+                ],
+            ],
         ], 200),
     ]);
 
@@ -60,17 +60,4 @@ it('can generate token and psid response with required details', function () {
     expect($token)->toBe('generated-token');
     expect($response)->toBeInstanceOf(Response::class);
 });
-
-
-// it('throws an exception for empty account number', function () {
-
-//     Http::fake([
-//         '*' => Http::response(),
-//     ]);
-
-//     expect(function () {
-//         app(Payzen::class)->setAccountNumber('23');
-//     })->toThrow(InvalidArgumentException::class, 'Account number is required');
-// });
-
 

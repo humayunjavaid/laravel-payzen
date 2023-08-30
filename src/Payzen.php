@@ -45,12 +45,11 @@ class Payzen
      */
     protected string $cnic;
 
-
     /**
      * Email
-     * @var string
      */
     protected string $email;
+
 
     /**
      * Consumer Name
@@ -58,12 +57,11 @@ class Payzen
      */
     protected string $consumerName;
 
+
     /**
      * mobileNumber
-     * @var string
      */
     protected string $mobileNumber;
-
 
     /**
      * Account Number
@@ -99,9 +97,6 @@ class Payzen
      * Service ID
      */
     protected string $serviceId;
-
-
-
 
     public function __construct(
         string $clientId = '',
@@ -204,8 +199,6 @@ class Payzen
 
     /**
      * Account Number of merchant
-     * @param string $accountNumber
-     * @return self
      */
     public function setAccountNumber(string $accountNumber): self
     {
@@ -217,8 +210,6 @@ class Payzen
 
     /**
      * Account title of merchant
-     * @param string $accountTitle
-     * @return self
      */
     public function setAccountTitle(string $accountTitle): self
     {
@@ -229,8 +220,6 @@ class Payzen
 
     /**
      * Amount to be set
-     * @param string $amount
-     * @return self
      */
     public function setAmount(string $amount): self
     {
@@ -241,8 +230,6 @@ class Payzen
 
     /**
      * Due date of payable amount
-     * @param string $dueDate
-     * @return self
      */
     public function setDueDate(string $dueDate): self
     {
@@ -253,8 +240,6 @@ class Payzen
 
     /**
      * Expiry Date of payable amount
-     * @param string $expiryDate
-     * @return self
      */
     public function setExpiryDate(string $expiryDate): self
     {
@@ -265,8 +250,6 @@ class Payzen
 
     /**
      * Client generated challanNumber required for payment intimation
-     * @param string $challanNumber
-     * @return self
      */
     public function setChallanNumber(string $challanNumber): self
     {
@@ -277,8 +260,6 @@ class Payzen
 
     /**
      * Service ID provided by Payzen
-     * @param string $serviceId
-     * @return self
      */
     public function setServiceId(string $serviceId): self
     {
@@ -286,6 +267,7 @@ class Payzen
 
         return $this;
     }
+
 
     /**
      *
@@ -306,26 +288,21 @@ class Payzen
     public function setCnic(string $cnic): self
     {
         $this->cnic = $cnic;
+
         return $this;
     }
 
-    /**
-     * @param string $email
-     * @return self
-     */
     public function setEmail(string $email): self
     {
         $this->email = $email;
+
         return $this;
     }
 
-    /**
-     * @param string $mobileNumber
-     * @return self
-     */
     public function setMobileNumber(string $mobileNumber): self
     {
         $this->mobileNumber = $mobileNumber;
+
         return $this;
     }
 }
