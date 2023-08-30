@@ -5,9 +5,10 @@ declare(strict_types=1);
 namespace Humayunjavaid\Payzen;
 
 use Exception;
-use Illuminate\Http\Client\PendingRequest;
 use Illuminate\Http\Client\Response;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Http\Client\PendingRequest;
+use Humayunjavaid\Payzen\Validators\ValidatorFactory;
 
 /**
  *  Payzen
@@ -51,7 +52,11 @@ class Payzen
      */
     protected string $email;
 
-
+    /**
+     * Consumer Name
+     * @var string
+     */
+    protected string $consumerName;
 
     /**
      * mobileNumber
@@ -117,29 +122,40 @@ class Payzen
 
     }
 
-    public function psid(): Payzen
-    {
-        return new self();
-    }
-
     /**
      * Generate Psid and return response
      */
     public function generate(): Response
     {
 
+        $validator = ValidatorFactory::createValidator();
+        $validator->validate($this->payload());
+
         $request = $this->createRequest();
 
-        return $request->post($this->psidUrl, [
+        return $request->post($this->psidUrl, $this->payload());
+
+    }
+
+
+    public function payload(): array
+    {
+        return [
+            'cnic' => $this->cnic,
+            'consumerName' => $this->consumerName,
+            'mobileNumber' => $this->mobileNumber ?? '',
             'challanNumber' => $this->challanNumber,
             'serviceId' => $this->serviceId,
-            'dueDate' => $this->dueDate ?? '',
-            'expiryDate' => $this->expiryDate ?? '',
+            'dueDate' => $this->dueDate,
+            'expiryDate' => $this->expiryDate,
             'amountWithinDueDate' => $this->amount,
             'amountAfterDueData' => $this->amount ?? '',
-            'amountBifurcation' => []
-        ]);
-
+            'amountBifurcation' => [
+                'accountHeadName' => $this->accountTitle,
+                'accountNumber' => $this->accountNumber,
+                'amountToTransfer' => $this->amount
+            ]
+        ];
     }
 
     /**
@@ -186,7 +202,6 @@ class Payzen
         return $request;
     }
 
-
     /**
      * Account Number of merchant
      * @param string $accountNumber
@@ -194,6 +209,7 @@ class Payzen
      */
     public function setAccountNumber(string $accountNumber): self
     {
+
         $this->accountNumber = $accountNumber;
 
         return $this;
@@ -268,6 +284,17 @@ class Payzen
     {
         $this->serviceId = $serviceId;
 
+        return $this;
+    }
+
+    /**
+     *
+     * @param string $consumerName
+     * @return self
+     */
+    public function setConsumerName(string $consumerName): self
+    {
+        $this->consumerName = $consumerName;
         return $this;
     }
 
