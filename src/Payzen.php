@@ -40,15 +40,17 @@ class Payzen
      */
     protected string $token;
 
+
     /**
-     *  Cnic
+     * CNIC
+     * @var string
      */
     protected string $cnic;
 
     /**
      * Email
      */
-    protected string $email;
+    protected ?string $email = null;
 
     /**
      * Consumer Name
@@ -58,7 +60,7 @@ class Payzen
     /**
      * mobileNumber
      */
-    protected string $mobileNumber;
+    protected ?string $mobileNumber = null;
 
     /**
      * Account Number
@@ -71,9 +73,14 @@ class Payzen
     protected string $accountTitle;
 
     /**
-     * Amount
+     * Amount Within Due Date
      */
-    protected string $amount;
+    protected int $amountWithinDueDate;
+
+    /**
+     * Amount After Due Date
+     */
+    protected int $amountAfterDueDate;
 
     /**
      * Due Date
@@ -94,6 +101,7 @@ class Payzen
      * Service ID
      */
     protected string $serviceId;
+
 
     public function __construct(
         string $clientId = '',
@@ -125,7 +133,7 @@ class Payzen
 
         $request = $this->createRequest();
 
-        return $request->post($this->psidUrl, $this->payload());
+        return $request->post($this->psidUrl, $validator->getValidatedData());
 
     }
 
@@ -134,18 +142,19 @@ class Payzen
         return [
             'cnic' => $this->cnic,
             'consumerName' => $this->consumerName,
-            'mobileNumber' => $this->mobileNumber ?? '',
+            'email' => $this->email,
+            'mobileNumber' => $this->mobileNumber,
             'challanNumber' => $this->challanNumber,
             'serviceId' => $this->serviceId,
             'dueDate' => $this->dueDate,
             'expiryDate' => $this->expiryDate,
-            'amountWithinDueDate' => $this->amount,
-            'amountAfterDueData' => $this->amount ?? '',
-            'amountBifurcation' => [
+            'amountWithinDueDate' => $this->amountWithinDueDate,
+            'amountAfterDueDate' => $this->amountAfterDueDate,
+            'amountBifurcation' => [[
                 'accountHeadName' => $this->accountTitle,
                 'accountNumber' => $this->accountNumber,
-                'amountToTransfer' => $this->amount,
-            ],
+                'amountToTransfer' => $this->amountWithinDueDate,
+            ]],
         ];
     }
 
@@ -164,7 +173,7 @@ class Payzen
                 'clientSecretKey' => $this->clientSecretKey,
             ]);
 
-        if (! $response->successful()) {
+        if (!$response->successful()) {
             throw new Exception('Failed to generate token');
         }
 
@@ -172,7 +181,7 @@ class Payzen
 
         $this->token = data_get($data, 'content.0.token.token', '');
 
-        if (! $this->token) {
+        if (!$this->token) {
             throw new Exception('Token not received in the response');
         }
 
@@ -210,16 +219,6 @@ class Payzen
     public function setAccountTitle(string $accountTitle): self
     {
         $this->accountTitle = $accountTitle;
-
-        return $this;
-    }
-
-    /**
-     * Amount to be set
-     */
-    public function setAmount(string $amount): self
-    {
-        $this->amount = $amount;
 
         return $this;
     }
@@ -266,29 +265,64 @@ class Payzen
 
     public function setConsumerName(string $consumerName): self
     {
+
         $this->consumerName = $consumerName;
 
         return $this;
     }
 
+    /**
+     * Amount Within Due Date
+     * @param int $amountWithinDueDate Amount Within Due Date
+     * @return self
+     */
+    public function setAmountWithinDueDate(int $amountWithinDueDate): self
+    {
+        $this->amountWithinDueDate = $amountWithinDueDate;
+        return $this;
+    }
+
+    /**
+     * mobileNumber
+     * @param string|null $mobileNumber mobileNumber
+     * @return self
+     */
+    public function setMobileNumber(?string $mobileNumber = null): self
+    {
+        $this->mobileNumber = $mobileNumber;
+        return $this;
+    }
+
+    /**
+     * Email
+     * @param string|null $email Email
+     * @return self
+     */
+    public function setEmail(?string $email = null): self
+    {
+        $this->email = $email;
+        return $this;
+    }
+
+    /**
+     * Amount After Due Date
+     * @param int $amountAfterDueDate Amount After Due Date
+     * @return self
+     */
+    public function setAmountAfterDueDate(int $amountAfterDueDate): self
+    {
+        $this->amountAfterDueDate = $amountAfterDueDate;
+        return $this;
+    }
+
+    /**
+     * CNIC
+     * @param string $cnic CNIC
+     * @return self
+     */
     public function setCnic(string $cnic): self
     {
         $this->cnic = $cnic;
-
-        return $this;
-    }
-
-    public function setEmail(string $email): self
-    {
-        $this->email = $email;
-
-        return $this;
-    }
-
-    public function setMobileNumber(string $mobileNumber): self
-    {
-        $this->mobileNumber = $mobileNumber;
-
         return $this;
     }
 }

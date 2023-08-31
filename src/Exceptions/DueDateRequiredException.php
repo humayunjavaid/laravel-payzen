@@ -1,14 +1,14 @@
 <?php
-
+declare(strict_types=1);
 namespace Humayunjavaid\Payzen\Exceptions;
 
 use Exception;
 use Throwable;
 
-class AmountDueDateRequiredException extends Exception
+class DueDateRequiredException extends Exception
 {
     public function __construct(
-        $message = 'Amount Due Date is required.',
+        $message = 'Due Date is required.',
         $code = 0,
         Throwable $previous = null
     ) {

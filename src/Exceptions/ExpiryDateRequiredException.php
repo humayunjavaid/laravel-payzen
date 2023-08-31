@@ -5,10 +5,10 @@ namespace Humayunjavaid\Payzen\Exceptions;
 use Exception;
 use Throwable;
 
-class CnicRequiredException extends Exception
+class ExpiryDateRequiredException extends Exception
 {
     public function __construct(
-        $message = 'CNIC is required.',
+        $message = 'Expiry Date is required.',
         $code = 0,
         Throwable $previous = null
     ) {

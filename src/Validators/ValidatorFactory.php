@@ -1,5 +1,5 @@
 <?php
-
+declare(strict_types=1);
 namespace Humayunjavaid\Payzen\Validators;
 
 use Humayunjavaid\Payzen\Contracts\Validator;

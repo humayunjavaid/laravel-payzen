@@ -5,10 +5,10 @@ namespace Humayunjavaid\Payzen\Exceptions;
 use Exception;
 use Throwable;
 
-class CnicRequiredException extends Exception
+class CHallanNumberRequiredException extends Exception
 {
     public function __construct(
-        $message = 'CNIC is required.',
+        $message = 'Challan number is required.',
         $code = 0,
         Throwable $previous = null
     ) {
