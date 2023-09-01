@@ -5,7 +5,7 @@
 [![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/humayunjavaid/laravel-payzen/fix-php-code-style-issues.yml?branch=main&label=code%20style&style=flat-square)](https://github.com/humayunjavaid/laravel-payzen/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
 [![Total Downloads](https://img.shields.io/packagist/dt/humayunjavaid/laravel-payzen.svg?style=flat-square)](https://packagist.org/packages/humayunjavaid/laravel-payzen)
 
-Centralized Payment Protocol for P2G, P2P, B2G & B2B Payments for Commercial and Government Receipts
+Streamline Payzen payment integration in Laravel. Generate Payment Service Identifiers (PSIDs) for P2G, P2P, B2G, and B2B payments with ease.
 
 ## Installation
 
