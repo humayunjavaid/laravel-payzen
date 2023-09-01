@@ -7,11 +7,11 @@ namespace Humayunjavaid\Payzen\Validators;
 use Humayunjavaid\Payzen\Contracts\Validator;
 use Humayunjavaid\Payzen\Exceptions\AmountAfterDueDateRequiredException;
 use Humayunjavaid\Payzen\Exceptions\AmountWithinDueDateRequiredException;
-use Humayunjavaid\Payzen\Exceptions\DueDateRequiredException;
-use Humayunjavaid\Payzen\Exceptions\ServiceIdRequiredException;
-use Humayunjavaid\Payzen\Exceptions\ExpiryDateRequiredException;
-use Humayunjavaid\Payzen\Exceptions\ConsumerNameRequiredException;
 use Humayunjavaid\Payzen\Exceptions\ChallanNumberRequiredException;
+use Humayunjavaid\Payzen\Exceptions\ConsumerNameRequiredException;
+use Humayunjavaid\Payzen\Exceptions\DueDateRequiredException;
+use Humayunjavaid\Payzen\Exceptions\ExpiryDateRequiredException;
+use Humayunjavaid\Payzen\Exceptions\ServiceIdRequiredException;
 
 class PayzenValidator implements Validator
 {
@@ -51,7 +51,7 @@ class PayzenValidator implements Validator
         $this->validatedData = $arguments;
     }
 
-    public function getValidatedData() : array
+    public function getValidatedData(): array
     {
         return $this->validatedData;
 

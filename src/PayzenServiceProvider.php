@@ -1,5 +1,7 @@
 <?php
+
 declare(strict_types=1);
+
 namespace Humayunjavaid\Payzen;
 
 use Spatie\LaravelPackageTools\Package;
