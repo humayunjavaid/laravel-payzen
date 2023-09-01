@@ -152,7 +152,7 @@ class Payzen
                     'accountHeadName' => $this->accountTitle,
                     'accountNumber' => $this->accountNumber,
                     'amountToTransfer' => $this->amountWithinDueDate,
-                ]
+                ],
             ],
         ];
     }
@@ -172,7 +172,7 @@ class Payzen
                 'clientSecretKey' => $this->clientSecretKey,
             ]);
 
-        if (!$response->successful()) {
+        if (! $response->successful()) {
             throw new Exception('Failed to generate token');
         }
 
@@ -180,7 +180,7 @@ class Payzen
 
         $this->token = data_get($data, 'content.0.token.token', '');
 
-        if (!$this->token) {
+        if (! $this->token) {
             throw new Exception('Token not received in the response');
         }
 
