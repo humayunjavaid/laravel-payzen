@@ -127,7 +127,6 @@ class Payzen
      */
     public function generate(): Response
     {
-
         $validator = ValidatorFactory::createValidator();
         $validator->validate($this->payload());
 
