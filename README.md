@@ -36,9 +36,6 @@ return [
 
 ];
 ```
-
-Optionally, you can publish the views using
-
 ## Usage
 
 ```php

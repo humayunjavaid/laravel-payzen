@@ -40,7 +40,7 @@ it('can generate token and psid response with required details', function () {
     $token = app(Payzen::class)->generateToken();
 
     Http::fake([
-        'api/generatePsid/*' => Http::response(),
+        '*' => Http::response(),
     ]);
 
     $response = app(Payzen::class)
