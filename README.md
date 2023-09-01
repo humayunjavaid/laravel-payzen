@@ -1,19 +1,11 @@
-# This is my package laravel-payzen
+# Payzen
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/humayunjavaid/laravel-payzen.svg?style=flat-square)](https://packagist.org/packages/humayunjavaid/laravel-payzen)
 [![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/humayunjavaid/laravel-payzen/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/humayunjavaid/laravel-payzen/actions?query=workflow%3Arun-tests+branch%3Amain)
 [![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/humayunjavaid/laravel-payzen/fix-php-code-style-issues.yml?branch=main&label=code%20style&style=flat-square)](https://github.com/humayunjavaid/laravel-payzen/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
 [![Total Downloads](https://img.shields.io/packagist/dt/humayunjavaid/laravel-payzen.svg?style=flat-square)](https://packagist.org/packages/humayunjavaid/laravel-payzen)
 
-This is where your description should go. Limit it to a paragraph or two. Consider adding a small example.
-
-## Support us
-
-[<img src="https://github-ads.s3.eu-central-1.amazonaws.com/laravel-payzen.jpg?t=1" width="419px" />](https://spatie.be/github-ad-click/laravel-payzen)
-
-We invest a lot of resources into creating [best in class open source packages](https://spatie.be/open-source). You can support us by [buying one of our paid products](https://spatie.be/open-source/support-us).
-
-We highly appreciate you sending us a postcard from your hometown, mentioning which of our package(s) you are using. You'll find our address on [our contact page](https://spatie.be/about-us). We publish all received postcards on [our virtual postcard wall](https://spatie.be/open-source/postcards).
+Centralized Payment Protocol for P2G, P2P, B2G & B2B Payments for Commercial and Government Receipts
 
 ## Installation
 
@@ -21,13 +13,6 @@ You can install the package via composer:
 
 ```bash
 composer require humayunjavaid/laravel-payzen
-```
-
-You can publish and run the migrations with:
-
-```bash
-php artisan vendor:publish --tag="laravel-payzen-migrations"
-php artisan migrate
 ```
 
 You can publish the config file with:
@@ -40,44 +25,41 @@ This is the contents of the published config file:
 
 ```php
 return [
+
+    'clientId' => env('PAYZEN_CLIENT_ID'),
+
+    'clientSecretKey' => env('PAYZEN_CLIENT_SECRET_KEY'),
+
+    'authUrl' => env('PAYZEN_AUTH_URL'),
+
+    'psidUrl' => env('PAYZEN_PSID_URL'),
+
 ];
 ```
 
 Optionally, you can publish the views using
 
-```bash
-php artisan vendor:publish --tag="laravel-payzen-views"
-```
-
 ## Usage
 
 ```php
-$payzen = new Humayunjavaid\Payzen();
-echo $payzen->echoPhrase('Hello, Humayunjavaid!');
+Payzen::setConsumerName('Dummy User')
+    ->setCnic('123456789')
+    ->setEmail('dummyuser@email.com')
+    ->setMobileNumber('3324232321')
+    ->setChallanNumber('2323232323')
+    ->setServiceId('12')
+    ->setAccountNumber('32323')
+    ->setAccountTitle('Bibi Pak Damin')
+    ->setDueDate('2023-08-29')
+    ->setExpiryDate('2023-08-29')
+    ->setAmountWithinDueDate(500)
+    ->setAmountAfterDueDate(500)
+    ->generate();
 ```
-
-## Testing
-
-```bash
-composer test
-```
-
-## Changelog
-
-Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
-
-## Contributing
-
-Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
-
-## Security Vulnerabilities
-
-Please review [our security policy](../../security/policy) on how to report security vulnerabilities.
-
 ## Credits
 
-- [Humayun Javed](https://github.com/humayunjavaid)
-- [All Contributors](../../contributors)
+-   [Humayun Javed](https://github.com/humayunjavaid)
+-   [All Contributors](../../contributors)
 
 ## License
 
