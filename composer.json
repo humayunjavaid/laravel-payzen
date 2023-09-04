@@ -1,6 +1,6 @@
 {
     "name": "humayunjavaid/laravel-payzen",
-    "description": "This is my package laravel-payzen",
+    "description": "A simple package to generate Payzen PSID.",
     "keywords": [
         "humayunjavaid",
         "laravel",
