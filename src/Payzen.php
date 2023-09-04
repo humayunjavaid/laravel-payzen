@@ -101,11 +101,32 @@ class Payzen
     protected string $serviceId;
 
     public function __construct(
-        string $clientId = '',
-        string $clientSecretKey = '',
-        string $authUrl = '',
-        string $psidUrl = ''
+        string $clientId ,
+        string $clientSecretKey ,
+        string $authUrl ,
+        string $psidUrl
     ) {
+
+
+        if(empty($clientId))
+        {
+            throw new Exception('Client id is required');
+        }
+
+        if(empty($clientSecretKey))
+        {
+            throw new Exception('Client secret key is required');
+        }
+
+        if(empty($authUrl))
+        {
+            throw new Exception('Authentication url is required');
+        }
+
+        if(empty($psidUrl))
+        {
+            throw new Exception('PSID url is required');
+        }
 
         $this->clientId = $clientId;
 

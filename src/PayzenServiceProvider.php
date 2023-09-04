@@ -11,21 +11,18 @@ class PayzenServiceProvider extends PackageServiceProvider
 {
     public function configurePackage(Package $package): void
     {
+
         $package
             ->name('laravel-payzen')
-            ->hasConfigFile();
+            ->hasConfigFile('payzen');
 
-        $this->app->bind('payzen', function () {
-
-            $clientId = config('payzen.clientId');
-
-            $clientSecretKey = config('payzen.clientSecretKey');
-
-            $authUrl = config('payzen.authUrl');
-
-            $psidUrl = config('payzen.psidUrl');
-
-            return new Payzen($clientId, $clientSecretKey, $authUrl, $psidUrl);
+        $this->app->bind(Payzen::class, function () {
+            return new Payzen(
+                config('payzen.clientId'),
+                config('payzen.clientSecretKey'),
+                config('payzen.authUrl'),
+                config('payzen.psidUrl')
+            );
 
         });
     }

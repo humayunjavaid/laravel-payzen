@@ -7,7 +7,7 @@ namespace Humayunjavaid\Payzen\Exceptions;
 use Exception;
 use Throwable;
 
-class CHallanNumberRequiredException extends Exception
+class ChallanNumberRequiredException extends Exception
 {
     public function __construct(
         $message = 'Challan number is required.',
