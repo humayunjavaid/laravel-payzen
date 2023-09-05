@@ -19,10 +19,11 @@ composer require humayunjavaid/laravel-payzen
 Check your ```.env``` file, and ensure that your following parameters are set with valid credentials obtained from Payzen.
 
 ```
-PAYZEN_CLIENT_ID
-PAYZEN_CLIENT_SECRET_KEY
-PAYZEN_AUTH_URL (Optional)
-PAYZEN_PSID_URL (Optional)
+PAYZEN_CLIENT_ID =
+PAYZEN_CLIENT_SECRET_KEY =
+PAYZEN_AUTH_URL = (Optional)
+PAYZEN_PSID_URL = (Optional)
+
 ```
 Optionally you can publish the config file with:
 
