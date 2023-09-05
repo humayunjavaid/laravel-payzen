@@ -14,8 +14,17 @@ You can install the package via composer:
 ```bash
 composer require humayunjavaid/laravel-payzen
 ```
+## Set Up Environment
 
-You can publish the config file with:
+Check your ```.env``` file, and ensure that your following parameters are set with valid credentials obtained from Payzen.
+
+```
+PAYZEN_CLIENT_ID
+PAYZEN_CLIENT_SECRET_KEY
+PAYZEN_AUTH_URL (Optional)
+PAYZEN_PSID_URL (Optional)
+```
+Optionally you can publish the config file with:
 
 ```bash
 php artisan vendor:publish --tag="laravel-payzen-config"
