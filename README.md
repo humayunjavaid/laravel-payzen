@@ -65,6 +65,7 @@ $response->header($header) : string;
 $response->headers() : array;
 
 ```
+## Generate PSID
 
 ```php
 Payzen::setConsumerName('Dummy User')
