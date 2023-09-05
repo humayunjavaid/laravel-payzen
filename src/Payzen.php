@@ -110,7 +110,7 @@ class Payzen
     ) {
 
         if (empty($clientId)) {
-           throw new ClientIdRequiredException;
+            throw new ClientIdRequiredException;
         }
 
         if (empty($clientSecretKey)) {

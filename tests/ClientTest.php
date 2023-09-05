@@ -9,20 +9,19 @@ use Illuminate\Support\Facades\Http;
 beforeEach(function () {
     config([
         'payzen.clientId' => 'fake-clientId',
-        'payzen.clientSecretKey' => 'fake-clientSecretKey'
+        'payzen.clientSecretKey' => 'fake-clientSecretKey',
     ]);
 });
 
-it('throws client id exception ' , function(){
+it('throws client id exception ', function () {
     config(['payzen.clientId' => null]);
     throw new ClientIdRequiredException;
-})->throws(ClientIdRequiredException::class , 'Client id is required');
+})->throws(ClientIdRequiredException::class, 'Client id is required');
 
-it('throws client secret key exception ' , function(){
+it('throws client secret key exception ', function () {
     config(['payzen.clienSecretKey' => null]);
     throw new ClientSecretKeyRequiredException;
-})->throws(ClientSecretKeyRequiredException::class , 'Client secret key is required');
-
+})->throws(ClientSecretKeyRequiredException::class, 'Client secret key is required');
 
 it('generates a token', function () {
 
