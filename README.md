@@ -48,6 +48,24 @@ return [
 ```
 ## Usage
 
+Generate PSID method will return ```Illuminate\Http\Client\Response``` instance. That mean's, you have access to following methods.
+
+```php
+
+$response->body() : string;
+$response->json() : array|mixed;
+$response->collect() : Illuminate\Support\Collection;
+$response->status() : int;
+$response->ok() : bool;
+$response->successful() : bool;
+$response->failed() : bool;
+$response->serverError() : bool;
+$response->clientError() : bool;
+$response->header($header) : string;
+$response->headers() : array;
+
+```
+
 ```php
 Payzen::setConsumerName('Dummy User')
     ->setCnic('123456789')
