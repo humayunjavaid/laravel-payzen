@@ -1,8 +1,28 @@
 <?php
 
+use Humayunjavaid\Payzen\Exceptions\ClientIdRequiredException;
+use Humayunjavaid\Payzen\Exceptions\ClientSecretKeyRequiredException;
 use Humayunjavaid\Payzen\Payzen;
 use Illuminate\Http\Client\Response;
 use Illuminate\Support\Facades\Http;
+
+beforeEach(function () {
+    config([
+        'payzen.clientId' => 'fake-clientId',
+        'payzen.clientSecretKey' => 'fake-clientSecretKey'
+    ]);
+});
+
+it('throws client id exception ' , function(){
+    config(['payzen.clientId' => null]);
+    throw new ClientIdRequiredException;
+})->throws(ClientIdRequiredException::class , 'Client id is required');
+
+it('throws client secret key exception ' , function(){
+    config(['payzen.clienSecretKey' => null]);
+    throw new ClientSecretKeyRequiredException;
+})->throws(ClientSecretKeyRequiredException::class , 'Client secret key is required');
+
 
 it('generates a token', function () {
 
@@ -40,7 +60,7 @@ it('can generate token and psid response with required details', function () {
     $token = app(Payzen::class)->generateToken();
 
     Http::fake([
-        '*' => Http::response(),
+        'genratePSID/*' => Http::response(),
     ]);
 
     $response = app(Payzen::class)

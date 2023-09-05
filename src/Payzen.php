@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace Humayunjavaid\Payzen;
 
 use Exception;
+use Humayunjavaid\Payzen\Exceptions\ClientIdRequiredException;
+use Humayunjavaid\Payzen\Exceptions\ClientSecretKeyRequiredException;
 use Humayunjavaid\Payzen\Validators\ValidatorFactory;
 use Illuminate\Http\Client\PendingRequest;
 use Illuminate\Http\Client\Response;
@@ -108,19 +110,11 @@ class Payzen
     ) {
 
         if (empty($clientId)) {
-            throw new Exception('Client id is required');
+           throw new ClientIdRequiredException;
         }
 
         if (empty($clientSecretKey)) {
-            throw new Exception('Client secret key is required');
-        }
-
-        if (empty($authUrl)) {
-            throw new Exception('Authentication url is required');
-        }
-
-        if (empty($psidUrl)) {
-            throw new Exception('PSID url is required');
+            throw new ClientSecretKeyRequiredException;
         }
 
         $this->clientId = $clientId;
